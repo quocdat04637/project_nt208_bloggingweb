@@ -1,0 +1,66 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Edit my post{% endblock %}
+
+{% block head %}
+    <style>
+        .editpost-form {
+            width: 100%; /* Đặt chiều rộng cho form là 100% của màn hình */
+        }
+
+        .editpost-form textarea {
+            width: 100%; /* Đặt chiều rộng cho textarea là 100% của form */
+            box-sizing: border-box; /* Đảm bảo chiều rộng bao gồm cả padding và border */
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Edit My Post</h1>
+    <form method="post" enctype="multipart/form-data" class="editpost-form">
+        {% csrf_token %}
+        <div>
+            <label for="{{ form.title.id_for_label }}"><strong>Title:</strong>
+            </label>
+            {{ form.title }}
+        </div>
+
+        <div>
+            <label for="{{ form.content.id_for_label }}"><strong>Content:</strong>
+            </label>
+            {{ form.content }}
+        </div>
+
+        <div>
+            <label for="{{ form.image.id_for_label }}"><strong>Image:</strong>
+            </label>
+            {{ form.image }}
+        </div>
+
+        <div>
+            <label for="{{ form.status.id_for_label }}"><strong>Status:</strong>
+            </label>
+            {{ form.status }}
+        </div>
+
+        <div>
+            <label for="{{ form.category.id_for_label }}"><strong>Category:</strong>
+            </label>
+            {{ form.category }}
+        </div>
+
+        <div>
+            <label for="{{ form.tags.id_for_label }}"><strong>Tags:</strong>
+            </label>
+            {{ form.tags }}
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Save Post</button>
+        <br>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+    </form>
+
+{% endblock %}
+

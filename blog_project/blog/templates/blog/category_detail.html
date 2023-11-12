@@ -1,0 +1,52 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block head %}
+    <style>
+        .related-tags div a:hover {
+           background-color:violet !important;
+        }
+
+        /* Quy tắc CSS cho màn hình tablet, mobile */
+        @media screen and (max-width: 990px) {
+            .overlay {
+                opacity: 1 !important;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="category-header">
+        <img src="{{ category.image.url }}" alt="Error" class="image">
+        <div class="overlay">
+            <p>{{ category.name }}</p>
+
+        </div>
+    </div>
+
+    <div class="related-tags container my-5">
+        <h2>Related Tags:</h2>
+        <div>
+            {% for tag in category.tags.all %}
+                <a href="{% url 'tag_detail' tag.pk %}" class="text-decoration-none text-white btn bg-info p-2 my-2 rounded-pill">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="container my-5 newest-post">
+        {% for post in posts %}      
+            <div>
+                <img src="{{ post.image.url }}" alt="Error" width="100px" height="100px">
+                <a href="{% url 'post_detail' post.pk %}" class="text-dark text-decoration-none">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.author }} - {{ post.created_at }}</p>
+                </a>
+            </div>
+        {% endfor %}     
+    </div>
+    
+{% endblock %}

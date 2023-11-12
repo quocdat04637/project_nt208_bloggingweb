@@ -1,0 +1,107 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Frequently Asked Question{% endblock %}
+
+{% block head %}
+    <style>
+        .faq-list .faq-item {
+            padding: 10px 0;
+        }
+        .faq-list .faq-item .question{
+            padding-left: 10px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .faq-list .faq-item .answer {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+        <h1 class="text-center">FAQ's</h1>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="question bg-warning toggle">
+                        <i class="fa-solid fa-greater-than"></i>
+                        <i class="fa-solid fa-person-military-to-person"></i>
+                        <span>Question 1?</span>
+                    </div>
+                    <div class="answer">
+                        Answer 1. Your Answer here.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="question bg-warning toggle">
+                        <i class="fa-solid fa-greater-than"></i>
+                        <i class="fa-solid fa-person-military-to-person"></i>
+                        <span>Question 2?</span>
+                    </div>
+                    <div class="answer">
+                        Answer 2. Your answer here.
+                    </div>
+                </div>
+    
+                <div class="faq-item">
+                    <div class="question bg-warning toggle">
+                        <i class="fa-solid fa-greater-than"></i>
+                        <i class="fa-solid fa-person-military-to-person"></i>
+                        <span>Question 2?</span>
+                    </div>
+                    <div class="answer">
+                        Answer 2. Your answer here.
+                    </div>
+                </div>
+    
+    
+                <div class="faq-item">
+                    <div class="question bg-warning toggle">
+                        <i class="fa-solid fa-greater-than"></i>
+                        <i class="fa-solid fa-person-military-to-person"></i>
+                        <span>Question 2?</span>
+                    </div>
+                    <div class="answer">
+                        Answer 2. Your answer here.
+                    </div>
+                </div>
+    
+    
+                <div class="faq-item">
+                    <div class="question bg-warning toggle">
+                        <i class="fa-solid fa-greater-than"></i>
+                        <i class="fa-solid fa-person-military-to-person"></i>
+                        <span>Question 2?</span>
+                    </div>
+                    <div class="answer">
+                        Answer 2. Your answer here.
+                    </div>
+                </div>
+
+            </div>
+    <script>
+        const questionElements = document.querySelectorAll('.toggle');
+
+        questionElements.forEach((question) => {
+            toggleIcon = question.querySelector(".fa-solid.fa-greater-than");
+            console.log(toggleIcon);
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling; // Lấy phần answer kế tiếp
+                if (answer.style.display === "block") {
+                    toggleIcon.className = "fa-solid fa-greater-than";
+                    answer.style.display = "none";
+                } else {
+                    toggleIcon.className = "fa-solid fa-angle-down"
+                    answer.style.display = "block";
+                }
+            });
+        });
+    </script>
+
+    
+{% endblock %}
+
+

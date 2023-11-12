@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>All Categories</h1>
+    <div class="post-categories">
+        {% for category in categories %}
+            <div style="width: 30%;">
+                <a href="{% url 'category_detail' category.pk %}">
+                    <img src="{{ category.image.url }}" alt="{{ category.name }}" style="height: 200px">
+                </a>
+            </div>
+        
+        {% endfor %}
+    </div>
+{% endblock %}

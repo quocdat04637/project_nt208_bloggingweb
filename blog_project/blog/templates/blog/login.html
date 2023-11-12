@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="icon" href="{% static 'images/title-images/favicon.ico'%}" type="image/x-icon">
+</head>
+<body>
+  <a href="{% url 'home' %}">
+    <img src="{% static 'images/logo-images/blog-logo.png' %}" alt="" width="100px" height="100px" style="display: block; margin: 50px auto;">
+  </a>
+  <h2 class="text-center" style="font-weight: bold;">SIGN IN</h2>
+  <form method="post" class="login-form">
+      {% csrf_token %}
+
+      {% if form.errors %}
+        <div class="alert alert-danger">
+          <strong>Oops! Có lỗi xảy ra:</strong>
+          <ul>
+              {{ form.username.errors }}
+              {{ form.password.errors }}
+          </ul>
+        </div>
+      {% endif %}
+
+      <div>
+          <label for="{{ form.username.id_for_label }}"><strong>Username:</strong>
+            <i class="fa-solid fa-user"></i>
+          </label>
+          {{ form.username }}
+          <span class="error-message" style="color: red;">{{ form.username.errors }}</span>
+      </div>
+
+      
+      <div>
+          <label for="{{ form.password.id_for_label }}"><strong>Password:</strong>
+            <i class="fa-solid fa-lock"></i>
+          </label>
+          {{ form.password }}
+          <span class="error-message" style="color: red;">{{ form.password.errors }}</span>
+      </div>
+      
+      <button type="submit" class="btn-register btn btn-primary" style="width: 350px; justify-content: center; align-items: center;">Sign in</button>
+      
+  </form>
+
+  <p class="text-center">Don't have an account?
+    <a href="{% url 'register' %}" style="font-weight: 700; text-decoration: none;">Sign up!</a>
+  </p>
+</body>
+</html>

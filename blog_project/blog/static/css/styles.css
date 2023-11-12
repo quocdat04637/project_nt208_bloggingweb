@@ -1,0 +1,165 @@
+/* Style input fields */
+input[type="text"], input[type="email"], input[type="password"], input[type="content"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.register-form div, .login-form div, .profile-form div {
+    width: 60%;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+
+.createpost-form, .editpost-form {
+    align-items: center;
+}
+
+.createpost-form div, .editpost-form div {
+    width: 60%;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border: 1px solid #eb2121;
+    border-radius: 5px;
+}
+/* Style error messages */
+.error-message {
+    color: red;
+}
+
+/* Style the submit button */
+.btn-register, .btn-edit, .btn-delete {
+    background-color: #3e8e41;
+    color: white;
+    border: none;
+    font-weight: bold;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+
+.btn-register:hover, .btn-edit:hover, .btn-delete:hover{
+    background-color: #4caf50;
+}
+
+
+.btn-register:active, .btn-edit:active, .btn-delete:active{
+    background-color: #45a049;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+
+
+
+.newest-post a:hover{
+    opacity: 0.5;
+}
+
+.related_posts a:hover {
+    opacity: 0.5;
+}
+
+.newest-post li{
+    list-style-type: none;
+    margin: 10px;
+    
+}
+
+.newest-post div {
+    padding: 10px;
+    display: flex;
+}
+
+.newest-post div img{
+    margin-right: 10px;
+}
+
+.social-links a{
+    font-size: 30px;
+}
+
+.custom-comment-content {
+    border: 1px solid blue;
+    
+}
+
+.category-post {
+    display: flex;
+}
+.category-post div img:hover {
+    opacity: 0.5;
+}
+
+.see-all a i:hover {
+    color: rgb(185, 30, 224)
+}
+
+.slideshow-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+.category-header {
+    position: relative;
+    width: 100%;
+}
+
+.category-header img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.category-header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền với độ trong suốt */
+    color: white; /* Màu chữ trắng */
+    opacity: 0; /* Độ trong suốt ban đầu */
+    transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi opacity */
+}
+
+.category-header .overlay p {
+    font-size: 50px;
+}
+
+.category-header:hover .overlay {
+    opacity: 1; /* Khi hover, hiển thị overlay */
+}
+
+
+.tag-links a {
+    text-decoration: none;
+    width: 30px;
+}
+
+.related-tags div a:hover {
+    background-color:violet !important;
+}
+
+

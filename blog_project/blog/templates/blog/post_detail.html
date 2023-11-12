@@ -1,0 +1,194 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block head %}
+    <style>
+        /* Quy tắc CSS cho màn hình desktop */
+        .post-detail {
+            display: flex;
+            margin: 20px 0;
+        }
+
+        .post-detail .block1 {
+            padding-top: 50px;
+            width: 70%;
+        }
+
+        .post-detail .block2 {
+            padding-top: 30px;
+            width: 30%;
+        }
+
+        .comment-form {
+            width: 100%; /* Đặt chiều rộng cho form là 100% của màn hình */
+        }
+
+        .comment-form textarea {
+            width: 100%; /* Đặt chiều rộng cho textarea là 100% của form */
+            box-sizing: border-box; /* Đảm bảo chiều rộng bao gồm cả padding và border */
+        }
+
+        .post-social-links a {
+            color: black;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .post-social-links a:hover {
+            color: violet !important;
+        }
+
+      
+    
+        /* Quy tắc CSS cho màn hình mobile */
+        @media screen and (max-width: 768px) {
+            .post-detail {
+                display: block;  
+            }
+
+            .post-detail .block1, .post-detail .block2 {
+                width: 100%;
+            }
+
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="post-detail">
+            <div class="container block1">
+                <h1 style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">{{ post.title }}</h1> 
+                
+                <strong>Written by 
+                    <a href="{% url 'author_detail' post.author.pk %}" class="text-dark">{{ post.author }}</a>
+                    - Updated on {{ post.updated_at }}
+                </strong> 
+                <br>
+        
+        
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+                {% endif %}
+                <p>{{ post.content }}</p>
+    
+              
+                
+                <!-- Khung bình luận -->
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    <p>Post a comment on "{{ post.title }}"</p>
+    
+            
+                    <form method="post" class="comment-form">
+                        {% csrf_token %}
+                        <div>
+                            {{ comment_form.content }}
+                        </div>
+                        <button class="btn btn-primary" id="showLoginModal">Post Comment</button>
+                    </form>
+    
+                    {% if comments %}
+                        <ul class="comment-list container-md mt-5">
+                            <h3>All comments</h3>
+                            {% for comment in comments %}
+                                <li class="container p-2 my-2 border clearfix" style="list-style-type: none;">
+                                    <p><strong>{{ comment.user }}</strong> - {{ comment.created_at }}</p>
+                                    <p>{{ comment.content }}</p>
+                                    <p class="likes-count">Likes: {{ comment.likes }}</p>
+                                    
+                                    <button class="like-button text-decoration-none text-dark float-start btn btn-info" data-comment="{{ comment.pk }}"><i class="fa-solid fa-thumbs-up"></i></button>
+                                    {% if request.user == comment.user or request.user.is_staff %}
+                                        <a href="{% url 'delete_comment' comment.pk %}" class="text-decoration-none text-dark float-end btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    
+                </div>
+    
+                {% if related_posts %}
+                    <h2>You may also like</h2>
+                    <div class="container mt-2 newest-post">
+                        {% for related_post in related_posts %}
+                            <div style="display: flex;">
+                                <img src="{{ related_post.image.url }}" alt="Error" width="100px" height="100px" style="padding: 10px;">
+                                <a href="{% url 'post_detail' related_post.pk %}" class="text-dark text-decoration-none">
+                                    <h2>{{ related_post.title }}</h2>
+                                    <p>{{ related_post.author }}</p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif%}
+    
+                
+            </div>
+        
+    
+            <!-- Thêm social links cho việc chia sẻ bài viết -->
+            <div class="container block2">
+                <div class="post-social-links" style="font-size: 40px; padding: 20px 0;">
+                    <h2>Share this post</h2>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    
+                    <a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                
+                    <a href="https://www.instagram.com/share?url={{ request.build_absolute_uri }}" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+    
+                <div class="tag-links">
+                    <h3><i class="fa-solid fa-tag"></i>Tags:</h3>
+                    {% for tag in post_tags.all %}
+                        <span class="bg-info border rounded-pill text-white" style="width:100%;">
+                            <a href="{% url 'tag_detail' tag.id %}" class="text-decoration-none">
+                                <b>{{ tag.name }}</b>
+                                <br>
+                            </a>
+                        </span>
+                       
+                    {% endfor %}
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.like-button').click(function() {
+            var commentId = $(this).data('comment');
+            var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();  // Lấy token CSRF từ biểu mẫu
+            $.ajax({
+                url: '/like_comment/' + commentId + '/',
+                type: 'POST',
+                data: {'csrfmiddlewaretoken': csrfToken},  // Gửi token CSRF trong dữ liệu POST
+                dataType: 'json',
+                success: function(response) {
+                    if (response.message === 'Liked successfully') {
+                        // Cập nhật số lượt "like" trên trang
+                        $('.likes-count[data-comment="' + commentId + '"]').text('Likes: ' + response.likes);
+                        // Ẩn nút "Like"
+                        $(this).hide();
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
+            });
+        });
+    </script>
+    
+{% endblock %}

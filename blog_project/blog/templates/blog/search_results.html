@@ -1,0 +1,43 @@
+{% extends 'blog/base.html' %}
+{% block head %}
+    <style>
+        .search-results li{
+            list-style-type: none;
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+        }
+
+        .search-results li:hover {
+            opacity: 0.5;
+        }
+
+
+        .search-results li img{
+            margin-right: 10px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>Search Results for "{{ query }}"</h1>
+        <ul>
+            {% for post in results %}
+                <div class="search-results">
+                    <li>
+                        <img src="{{ post.image.url }}" alt="Error" width="100px" height="100px">
+                        <a href="{% url 'post_detail' post.pk %}" class="text-dark text-decoration-none">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.author }} - {{ post.created_at }}</p>
+                        </a>
+                    </li>
+                </div>
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+        </ul>
+    </div>
+   
+{% endblock %}

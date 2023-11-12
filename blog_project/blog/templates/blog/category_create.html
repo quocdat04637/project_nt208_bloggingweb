@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Create New Category{% endblock %}
+
+{% block head %}
+    <style>
+        .createpost-form {
+            width: 100%; /* Đặt chiều rộng cho form là 100% của màn hình */
+        }
+
+        .createpost-form textarea {
+            width: 100%; /* Đặt chiều rộng cho textarea là 100% của form */
+            box-sizing: border-box; /* Đảm bảo chiều rộng bao gồm cả padding và border */
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Create a New Category</h1>
+    <form method="post" enctype="multipart/form-data" class="createpost-form">
+        {% csrf_token %}
+        <div>
+            <label for="{{ form.name.id_for_label }}"><strong>Name:</strong>
+            </label>
+            {{ form.name }}
+        </div>
+
+        <div>
+            <label for="{{ form.description.id_for_label }}"><strong>Description:</strong>
+            </label>
+            {{ form.description }}
+        </div>
+
+        <div>
+            <label for="{{ form.image.id_for_label }}"><strong>Image:</strong>
+            </label>
+            {{ form.image }}
+        </div>
+
+        <div>
+            <label for="{{ form.tags.id_for_label }}"><strong>Tags:</strong></label>
+            {{ form.tags }}
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Create Category</button>
+        <br>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+    </form>
+
+{% endblock %}
+

@@ -1,0 +1,245 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+    <style>
+        /* Quy tắc CSS cho màn hình desktop */
+        .category-post {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0; /* Khoảng cách giữa các khối */
+        }
+
+        .category-post div {
+            width: calc(33.33% - 20px); /* Độ rộng của mỗi khối (3 cột trên mỗi hàng) */
+            margin-bottom: 20px; /* Khoảng cách giữa các dòng */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-post a {
+            display: block;
+            position: relative;
+        }
+
+        .category-post img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.2s; 
+        }
+
+        .category-post .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5); /* Màu nền cho overlay */
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            opacity: 0; /* Ban đầu ẩn overlay */
+            transition: opacity 0.2s;
+        }
+
+        .category-post div:hover .overlay {
+            opacity: 1; /* Hiển thị overlay khi di chuột qua */
+        }
+
+        .category-post div:hover img {
+            transform: scale(1.05); /* Hiệu ứng phóng to hình ảnh khi di chuột qua */
+        }
+
+        .ad {
+            padding: 30px 0;
+        }
+
+        .ad-main {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .ad-main .ad-item {
+            width: 25%;
+            padding: 10px;
+        }
+
+
+
+        /* Sử dụng media queries cho màn hình tablet */
+        @media screen and (max-width: 990px) {
+            .category-post {
+                flex-wrap: wrap;
+            }
+
+            .category-post div {
+                flex: 0 0 calc(50% - 10px); /* Đặt kích thước cho tablet (2 cột) */
+                margin-bottom: 20px; /* Khoảng cách giữa các dòng */
+                position: relative;
+                overflow: hidden;
+            }
+
+            .category-post .overlay {
+                opacity: 1;
+            }
+
+            .ad-main .ad-item {
+                width: 50% !important;
+            }
+
+        }
+
+        /* Sử dụng media queries cho màn hình mobile */
+         @media screen and (max-width: 420px) {
+            .category-post {
+                flex-wrap: wrap;
+            }
+
+            .category-post div {
+                flex: 0 0 calc(100% - 10px); /* Đặt kích thước cho mobile (1 cột) */
+                margin-bottom: 20px; /* Khoảng cách giữa các dòng */
+                position: relative;
+                overflow: hidden;
+            }
+            .category-post .overlay {
+                opacity: 1;
+            }
+
+            .see-all {
+                display: block !important;
+            }
+
+            .ad-main .ad-item {
+                width: 100% !important;
+            }
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    
+    <!-- Carousel -->
+    <div id="demo1" class="carousel slide" data-bs-ride="carousel">
+         <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+            {% for category in categories %}
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></button>
+            {% endfor %}
+        </div>
+        
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+            {% for category in categories %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ category.image.url }}" alt="{{ category.name }}" class="d-block img-fluid" style="display: block; width: 100%; height: auto;">
+                    <div class="carousel-caption text-white">
+                        <h3>{{ category.name }}</h3>
+                        <p>{{ category.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        
+        
+        <!-- Left and right controls/icons -->
+        <button class="carousel-control-prev slide" type="button" data-bs-target="#demo1" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon text-dark"></span>
+        </button>
+        <button class="carousel-control-next slide" type="button" data-bs-target="#demo1" data-bs-slide="next">
+            <span class="carousel-control-next-icon text-dark"></span>
+        </button>
+    </div>
+    
+    <div class="container">
+        <!-- Danh sách bài viết mới nhất -->
+        <div style="border-bottom: dashed; border-color: #198754; display: flex; justify-content: space-between; align-items: center;" class="see-all">
+            <h1 style="font-weight: bold; color: #198754; margin: 0;">Newest posts</h1>
+            <a href="{% url 'post_list' %}" style="text-decoration: none; font-size: 30px; color:#198754">See all <i class="fa-solid fa-forward"></i></a>
+        </div>
+        <ul class="newest-post">
+            {% for post in new_posts %} {# Chỉ hiển thị 5 bài mới nhất #}
+                <li>
+                    <div>
+                        <img src="{{ post.image.url }}" alt="Error" width="100px" height="100px">
+                        <a href="{% url 'post_detail' post.pk %}" class="text-dark text-decoration-none">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.author }} - {{ post.created_at }}</p>
+                        </a>
+                    </div>
+                    
+                    {% if user.is_authenticated %}
+                        {% if user.role == 'editor' and post.author == request.user %}
+                            <!-- Nút chỉnh sửa (tuỳ chọn) -->
+                            <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit</a>
+                    
+                            <!-- Nút xoá (tuỳ chọn) -->
+                            <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
+                        {% endif %}
+                    {% endif %}
+                
+                
+                </li>
+            {% endfor %}
+            
+        </ul>
+
+        <!-- Danh sách thể loại -->
+        <div style="border-bottom: dashed; border-color: #198754; display: flex; justify-content: space-between; align-items: center;">
+            <h1 style="font-weight: bold; color: #198754; margin: 0;">Categories</h1>
+        </div>
+        <div class="category-post">  
+            {% for category in categories %}
+                <div>
+                    <a href="{% url 'category_detail' category.pk %}">
+                        <p class="overlay">{{ category.name }}</p>
+                        <img src="{{ category.image.url }}" alt="error">
+                    </a>
+                </div>
+            {% endfor %}   
+            
+        </div>
+        
+        
+        <!-- Thành phần quảng cáo -->
+        <div class="ad text-center justify-content-center">
+            <h1>Why Our blogs?</h1>
+            <div class="ad-main">
+                <div class="ad-item">
+                    <img src="{% static 'images/ad-images/experience.png' %}" alt="" width="200px" height="200px">
+                    <h2>Share Passion</h2>
+                    <p>Freely share passion from your experience</p>
+                </div>
+                <div class="ad-item">
+                    <img src="{% static 'images/ad-images/collaborate.png' %}" alt="" width="200px" height="200px">
+                    <h2>Collaborate Together</h2>
+                    <p>Working with our experts</p>
+
+                </div>
+                <div class="ad-item">
+                    <img src="{% static 'images/ad-images/create.png' %}" alt="" width="200px" height="200px">
+                    <h2>Create Post</h2>
+                    <p>Create on your own so that everyone can see and interact</p>
+                </div>
+                <div class="ad-item">
+                    <img src="{% static 'images/ad-images/learn.png' %}" alt="" width="200px" height="200px">
+                    <h2>Learn</h2>
+                    <p>Learn something new via every post</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Thẻ và thể loại (tuỳ chọn) -->
+    <!-- Thành phần chia sẻ xã hội (tuỳ chọn) -->
+
+{% endblock %}
+
+

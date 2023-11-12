@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'images/title-images/favicon.ico'%}" type="image/x-icon">
+
+  </head>
+  <body>
+    <a href="{% url 'home' %}">
+      <img src="{% static 'images/logo-images/blog-logo.png' %}" alt="" width="100px" height="100px" style="display: block; margin: 50px auto;">
+    </a>
+    <h2 class="text-center" style="font-weight: bold;">CREATE AN ACCOUNT</h2>
+    <form method="post" class="register-form">
+      {% csrf_token %}
+      <div>
+        <label for="{{ form.username.id_for_label }}"><strong>Username:</strong>
+          <i class="fa-solid fa-user"></i>
+        </label>
+        {{ form.username }}
+        <span class="error-message" style="color: red;">{{ form.username.errors }}</span>
+      </div>
+    
+
+      <div>
+        <label for="{{ form.email.id_for_label }}"><strong>Email:</strong>
+          <i class="fa-solid fa-envelope"></i>
+        </label>
+        {{ form.email }}
+        <span class="error-message" style="color: red;">{{ form.email.errors }}</span>
+      </div>
+    
+      <div>
+        <label for="{{ form.password1.id_for_label }}"><strong>Password:</strong>
+          <i class="fa-solid fa-lock"></i>
+        </label>
+        {{ form.password1 }}
+        <span class="error-message" style="color: red;">{{ form.password1.errors }}</span>
+      </div>
+    
+
+      <div>
+        <label for="{{ form.password2.id_for_label }}"><strong>Confirm Password:</strong>
+          <i class="fa-solid fa-lock"></i>
+        </label>
+        {{ form.password2 }}
+        <span class="error-message" style="color: red;">{{ form.password2.errors }}</span>
+      </div>
+    
+      <button type="submit" class="btn-register btn btn-primary" data-bs-toggle="modal" data-bs-target="#successModal" style="width: 350px; justify-content: center; align-items: center;">
+        Register
+      </button>    
+    </form>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" data-registration-successful="{% if registration_successful %}true{% else %}false{% endif %}" class="modal fade" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="successModalLabel">Sign up successfully!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  Congratulations, you have successfully registered!
+              </div>
+              <div class="modal-footer">
+                  <a href="{% url 'login' %}" class="btn btn-primary">Login now</a>
+                  <a href="{% url 'home' %}" class="btn btn-secondary">Return home</a>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <p class="text-center">Have an account already?
+      <a href="{% url 'login' %}" style="font-weight: 700; text-decoration: none;">Login here</a>
+    </p>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js" integrity="sha384-A6z7fg2z7Lw5jp2n6n5l5W4Zw5qm9s3R5/5z5u5h5a5P5n5O5x5I5p5E5l5v5E5u5z5o5H5v5j5u5"
+      crossorigin="anonymous">
+    </script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+          var registrationSuccessful = $('#successModal').data('registration-successful');
+          if (registrationSuccessful === 'true') {
+            $('#successModal').modal('show');
+          }
+        });
+    </script>
+  </body>
+</html>

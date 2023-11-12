@@ -1,0 +1,73 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %}{{ user.name }}{% endblock %}
+{% block head %}
+    <style>
+        .profile-form {
+            width: 100%; /* Đặt chiều rộng cho form là 100% của màn hình */
+        }
+
+        .profile-form textarea {
+            width: 100%; /* Đặt chiều rộng cho textarea là 100% của form */
+            box-sizing: border-box; /* Đảm bảo chiều rộng bao gồm cả padding và border */
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+  <img src="{% static 'images/logo-images/blog-logo.png' %}" alt="" width="100px" height="100px" style="display: block; margin: 50px auto;">
+  <h1 class="text-center">{{ user.username }}'s profile</h1>
+  <form method="post" enctype="multipart/form-data" class="profile-form">
+    {% csrf_token %}
+    <div>
+        <label for="{{ form.username.id_for_label }}"><strong>Username:</strong>
+          <i class="fa-solid fa-user"></i>
+        </label>
+        <br>
+        {{ form.username }}
+        <span class="error-message" style="color: red;">{{ form.username.errors }}</span>
+    </div>
+  
+
+    <div>
+        <label for="{{ form.email.id_for_label }}"><strong>Email:</strong>
+          <i class="fa-solid fa-envelope"></i>
+        </label>
+        <br>
+        {{ form.email }}
+        <span class="error-message" style="color: red;">{{ form.email.errors }}</span>
+    </div>
+  
+    <div>
+        <label for="{{ form.password.id_for_label }}"><strong>Password:</strong>
+          <i class="fa-solid fa-lock"></i>
+        </label>
+        <br>
+        {{ form.password }}
+        <span class="error-message" style="color: red;">{{ form.password1.errors }}</span>
+    </div>
+
+    <div>
+        <label for="{{ form.description.id_for_label }}"><strong>Description:</strong>
+          <i class="fa-solid fa-bookmark"></i>
+        </label>
+        <br>
+        {{ form.description }}
+        <span class="error-message" style="color: red;">{{ form.description.errors }}</span>
+    </div>
+
+    <div>
+      <label for="{{ form.image.id_for_label }}"><strong>User profile:</strong>
+        <i class="fa-regular fa-image"></i>
+      </label>
+      <br>
+      {{ form.image }}
+      <span class="error-message" style="color: red;">{{ form.image.errors }}</span>
+    </div>
+  
+  
+    <button type="submit" class="btn-register btn btn-primary" style="width: 350px; align-items: center; justify-content: center;">
+      Save changes
+    </button>  
+  </form>
+{% endblock %}
