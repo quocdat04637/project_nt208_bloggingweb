@@ -5,6 +5,13 @@
 
 {% block head %}
     <style>
+        .container.faq {
+            padding: 30px;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+        
         .faq-list .faq-item {
             padding: 10px 0;
         }
@@ -22,6 +29,7 @@
 {% endblock %}
 
 {% block content %}
+    <div class="container faq">
         <h1 class="text-center">FAQ's</h1>
             <div class="faq-list">
                 <div class="faq-item">
@@ -50,10 +58,10 @@
                     <div class="question bg-warning toggle">
                         <i class="fa-solid fa-greater-than"></i>
                         <i class="fa-solid fa-person-military-to-person"></i>
-                        <span>Question 2?</span>
+                        <span>Question 3?</span>
                     </div>
                     <div class="answer">
-                        Answer 2. Your answer here.
+                        Answer 3. Your answer here.
                     </div>
                 </div>
     
@@ -62,10 +70,10 @@
                     <div class="question bg-warning toggle">
                         <i class="fa-solid fa-greater-than"></i>
                         <i class="fa-solid fa-person-military-to-person"></i>
-                        <span>Question 2?</span>
+                        <span>Question 4?</span>
                     </div>
                     <div class="answer">
-                        Answer 2. Your answer here.
+                        Answer 4. Your answer here.
                     </div>
                 </div>
     
@@ -74,14 +82,16 @@
                     <div class="question bg-warning toggle">
                         <i class="fa-solid fa-greater-than"></i>
                         <i class="fa-solid fa-person-military-to-person"></i>
-                        <span>Question 2?</span>
+                        <span>Question 5?</span>
                     </div>
                     <div class="answer">
-                        Answer 2. Your answer here.
+                        Answer 5. Your answer here.
                     </div>
                 </div>
 
             </div>
+    </div>
+        
     <script>
         const questionElements = document.querySelectorAll('.toggle');
 

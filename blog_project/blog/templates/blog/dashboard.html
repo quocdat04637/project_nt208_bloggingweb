@@ -9,58 +9,61 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-5 text-center">
-        <img src="{{ user.image.url }}" alt="No image profile" width="200px" height="200px" class="rounded-circle">
-        <h1>{{ user.username }}</h1> 
-        <p> {{ user.description }}</p>
+    <div class="container">
+        <div class="container mt-5 text-center">
+            <img src="{{ user.image.url }}" alt="No image profile" width="200px" height="200px" class="rounded-circle">
+            <h1>{{ user.username }}</h1> 
+            <p> {{ user.description }}</p>
+        </div>
+        {% if user.role == 'editor' %}
+            <h1>My Posts</h1>
+            <div class="my-post-dashboard">
+                {% for post in user_posts %}
+                    <a href="{% url 'post_detail' post.pk %}" class="text-white text-decoration-none">
+                        <div class="container-md border pt-2 my-2 bg-primary" style="border-radius: 20px;">
+                            <p>Title: {{ post.title }} -  Created: {{ post.created_at }} - Updated: {{ post.updated_at }}</p>
+                            <!-- Nút chỉnh sửa (tuỳ chọn) -->
+                            <a href="{% url 'edit_post' post.pk %}" class="btn btn-info" style="margin-bottom: 20px">Edit</a>
+                    
+                            <!-- Nút xoá (tuỳ chọn) -->
+                            <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger" style="margin-bottom: 20px">Delete</a>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+       
+        {% if user.role == 'admin' %}
+            <h1>My Categories 
+                <button id="toggle-dashboard">
+                    <i id="toggle-dashboard-icon" class="fa-solid fa-times" style="cursor: pointer;"></i>   
+                </button>
+            </h1>
+            <div class="my-category-dashboard" style="display: block;">
+                {% for category in categories %}
+                    <a href="{% url 'category_detail' category.pk %}" class="text-white text-decoration-none">
+                        <div class="container-md border pt-2 my-2 bg-primary" style="border-radius: 20px;">
+                            <img src="{{ category.image.url }}" alt="" width="100px" height="100px">
+                            <p>Name: {{ category.name }} -  Description: {{ category.description }}</p>
+                            
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+    
+            <h1>My Tags<i class="fa-solid fa-tag"></i></h1>
+            <div class="my-category-dashboard">
+                {% for tag in tags %}
+                    <a href="{% url 'tag_detail' tag.id %}" class="text-white text-decoration-none">
+                        <div class="container-md border pt-2 my-2 bg-primary" style="border-radius: 20px;">
+                            <p>{{ tag.name }} </p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>   
+        {% endif %}
     </div>
-    {% if user.role == 'editor' %}
-        <h1>My Posts</h1>
-        <div class="my-post-dashboard">
-            {% for post in user_posts %}
-                <a href="{% url 'post_detail' post.pk %}" class="text-white text-decoration-none">
-                    <div class="container-md border pt-2 my-2 bg-primary" style="border-radius: 20px;">
-                        <p>Title: {{ post.title }} -  Created: {{ post.created_at }} - Updated: {{ post.updated_at }}</p>
-                        <!-- Nút chỉnh sửa (tuỳ chọn) -->
-                        <a href="{% url 'edit_post' post.pk %}" class="btn btn-info">Edit</a>
-                
-                        <!-- Nút xoá (tuỳ chọn) -->
-                        <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
-    {% endif %}
-   
-    {% if user.role == 'admin' %}
-        <h1>My Categories 
-            <button id="toggle-dashboard">
-                <i id="toggle-dashboard-icon" class="fa-solid fa-times" style="cursor: pointer;"></i>   
-            </button>
-        </h1>
-        <div class="my-category-dashboard" style="display: block;">
-            {% for category in categories %}
-                <a href="{% url 'category_detail' category.pk %}" class="text-white text-decoration-none">
-                    <div class="container-md border pt-2 my-2 bg-primary" style="border-radius: 20px;">
-                        <img src="{{ category.image.url }}" alt="" width="100px" height="100px">
-                        <p>Name: {{ category.name }} -  Description: {{ category.description }}</p>
-                        
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
-
-        <h1>My Tags<i class="fa-solid fa-tag"></i></h1>
-        <div class="my-category-dashboard">
-            {% for tag in tags %}
-                <a href="{% url 'tag_detail' tag.id %}" class="text-white text-decoration-none">
-                    <div class="container-md border pt-2 my-2 bg-primary" style="border-radius: 20px;">
-                        <p>{{ tag.name }} </p>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>   
-    {% endif %}
+    
 
    
 

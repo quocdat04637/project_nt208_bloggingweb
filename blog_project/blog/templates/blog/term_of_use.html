@@ -4,11 +4,90 @@
 {% block title %}Term of Use{% endblock %}
 
 {% block head %}
-
+ <style>
+    .container.term-of-use {
+        padding: 30px;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+    }
+ </style>
 {% endblock %}
 
 {% block content %}
-    
+    <div class="container term-of-use">
+        <h1>Terms of Use</h1>
+
+        <h2>1. USE OF THE SITE.</h2>
+        <p>wetheparents.org grants you permission to use the Site subject to the restrictions in these Terms of Service. In accessing or using the Site, you may be exposed to Content that is offensive, indecent, inaccurate, objectionable, or otherwise inappropriate. wetheparents.org does not endorse such Content, and cannot vouch for its accuracy. You therefore access and use the Site at your own risk.</p>
+
+        <h2>2. PRIVACY POLICY.</h2>
+        <p>wetheparents.org respects your privacy and permits you to control the treatment of your personal information. We’ve created this <a href="{% url 'privacy_policy' %}">Privacy Policy</a> detailing what information we collect from you, how we store and secure that data, how the data is used, and who we share the data with online and off. WeTheParent.org’s privacy policy is expressly incorporated into this Agreement by this reference.</p>
+
+        <h2>3. USER CONTENT.</h2>
+        <p>You grant Company a license to use the materials you post to the Site or Service. By posting, downloading, displaying, performing, transmitting, or otherwise distributing information or other content (“User Content”) to the Site or Service, you are granting Company, its affiliates, officers, directors, employees, consultants, agents, and representatives a license to use</p>
+        <p>User Content in connection with the operation of the Internet business of Company, its affiliates, officers, directors, employees, consultants, agents, and representatives, including without limitation, a right to copy, distribute, transmit, publicly display, publicly perform, reproduce, edit, translate, and reformat User Content. You will not be compensated for any User Content. You agree that Company may publish or otherwise disclose your user name in connection with your User Content. By posting User Content on the Site or Service, you warrant and represent that you own the rights to the User Content or are otherwise authorized to post, distribute, display, perform, transmit, or otherwise distribute User Content.</p>
+
+        <h2>4. COMPLIANCE WITH INTELLECTUAL PROPERTY LAWS</h2>
+        <p>When accessing the Site or using the Service, you agree to obey the law and to respect the intellectual property rights of others. Your use of the Service and the Site is at all times governed by and subject to laws regarding copyright ownership and use of intellectual property. You agree not to upload, download, display, perform, transmit, or otherwise distribute any information or content (collectively, “Content”) in violation of any third party’s copyrights, trademarks, or other intellectual property or proprietary rights.</p>
+        <p>You agree to abide by laws regarding copyright ownership and use of intellectual property, and you shall be solely responsible for any violations of any relevant laws and for any infringements of third party rights caused by any Content you provide or transmit, or that is provided or transmitted using your User ID. The burden of proving that any Content does not violate any laws or third party rights rests solely with you.</p>
+
+        <h2>5. COPYRIGHT INFRINGEMENT.</h2>
+        <p>wetheparents.org has in place certain legally mandated procedures regarding allegations of copyright infringement occurring on the Site or with the Service. wetheparents.org has adopted a policy that provides for the immediate suspension and/or termination of any Site or Service user who is found to have infringed on the rights of Company or of a third party, or otherwise violated any intellectual property laws or regulations.
+        </p>
+
+        <p>wetheparents.org’s policy is to investigate any allegations of copyright infringement brought to its attention. If you have evidence, know, or have a good faith belief that your rights or the rights of a third party have been violated and you want Company to delete, edit, or disable the material in question, you must provide Company with all of the following information:</p>
+        <ul>
+            <li>(a) a physical or electronic signature of a person authorized to act on behalf of the owner of the exclusive right that is allegedly infringed;</li>
+            <li>(b) identification of the copyrighted work claimed to have been infringed, or, if multiple copyrighted works are covered by a single notification, a representative list of such works;</li>
+            <li>(c) identification of the material that is claimed to be infringed or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit Company to locate the material;</li>
+            <li>(d) information reasonably sufficient to permit Company to contact you, such as an address, telephone number, and if available, an electronic mail address at which you may be contacted;</li>
+            <li>(e) a statement that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law; and</li>
+            <li>(f) a statement that the information in the notification is accurate, and under penalty of perjury, that you are authorized to act on behalf of the owner of an exclusive right that is allegedly infringed. For this notification to be effective, you must provide it to Company using the contact information provided on this <a href="{% url 'contact' %}">contact page</a>.</li>
+        </ul>
+
+        <h2>6. PROHIBITED USES.</h2>
+        <p>wetheparents.org imposes certain restrictions on your permissible use of the Site and the Service. You are prohibited from violating or attempting to violate any security features of the Site or Service, including, without limitation,</p>
+        <ul>
+            <li>(a) accessing content or data not intended for you, or logging onto a server or account that you are not authorized to access;</li>
+            <li>(b) attempting to probe, scan, or test the vulnerability of the Service, the Site, or any associated system or network, or to breach security or authentication measures without proper authorization;</li>
+            <li>(c) interfering or attempting to interfere with service to any user, host, or network, including, without limitation, by means of submitting a virus to the Site or Service, overloading, “flooding,” “spamming,” “mail bombing,” or “crashing;”</li>
+            <li>(d) using the Site or Service to send unsolicited e-mail, including, without limitation, promotions, or advertisements for products or services; (e) forging any TCP/IP packet header or any part of the header information in any e-mail or in any posting using the Service; or</li>
+            <li>(f) attempting to modify, reverse-engineer, decompile, disassemble, or otherwise reduce or attempt to reduce to a human-perceivable form any of the source code used by Company in providing the Site or Service. Any violation of system or network security may subject you to civil and/or criminal liability.</li>
+        </ul>
+
+        <h2>7. ALLEGED VIOLATIONS.</h2>
+        <p>wetheparents.org reserves the right to terminate your use of the Service and/or the Site. To ensure that Company provides a high quality experience for you and for other users of the Site and the Service, you agree that Company or its representatives may access your account and records on a case-by-case basis to investigate complaints or allegations of abuse, infringement of third party rights, or other unauthorized uses of the Site or the Service.</p>
+        <p>Company does not intend to disclose the existence or occurrence of such an investigation unless required by law, but Company reserves the right to terminate your account or your access to the Site immediately, with or without notice to you, and without liability to you, if Company believes that you have violated any of the Terms of Use, furnished Company with false or misleading information, or interfered with use of the Site or the Service by others.</p>
+
+        <h2>8. TYPOGRAPHICAL ERRORS; ACCURACY OF INFORMATION.</h2>
+        <p>In the event a product or service is listed at an incorrect price or with incorrect information due to typographical error or error in pricing or product or service information received from our suppliers, Company shall have the right to refuse or cancel any orders placed for products or services listed at the incorrect price. wetheparents.org shall have the right to refuse or cancel any such orders whether or not the order has been confirmed and your credit card charged. If your credit card has already been charged for the purchase and your order is canceled, Company shall immediately issue a credit to your credit card account in the amount of the charge.
+        </p>
+
+
+        <h2>9. NO WARRANTIES.</h2>
+        <p>wetheparents.org HEREBY DISCLAIMS ALL WARRANTIES. COMPANY IS MAKING THE SITE AVAILABLE “AS IS” WITHOUT WARRANTY OF ANY KIND. YOU ASSUME THE RISK OF ANY AND ALL DAMAGE OR LOSS FROM USE OF, OR INABILITY TO USE, THE SITE OR THE SERVICE. TO THE MAXIMUM EXTENT PERMITTED BY LAW, COMPANY EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS OR IMPLIED, REGARDING THE SITE, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NONINFRINGEMENT. COMPANY DOES NOT WARRANT THAT THE SITE OR THE SERVICE WILL MEET YOUR REQUIREMENTS OR THAT THE OPERATION OF THE SITE OR THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE.</p>
+
+        <h2>10. LIMITED LIABILITY.</h2>
+        <p>wetheparents.org’s LIABILITY TO YOU IS LIMITED. TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL COMPANY BE LIABLE FOR DAMAGES OF ANY KIND (INCLUDING, BUT NOT LIMITED TO, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, LOST PROFITS, OR LOST DATA, REGARDLESS OF THE FORESEEABILITY OF THOSE DAMAGES) ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE SITE OR ANY OTHER MATERIALS OR SERVICES PROVIDED TO YOU BY COMPANY. This limitation shall apply regardless of whether the damages arise out of breach of contract, tort, or any other legal theory or form of action.</p>
+
+        <h2>11. AFFILIATED AND THIRD PARTY SITES.</h2>
+        <p>wetheparents.org has no control over, and no liability for any third party websites or materials or products and services provided therein. wetheparents.org works with a number of partners, affiliates, and advertisers whose Internet sites may be linked with or incorporated into the Site. Because neither Company nor the Site has control over the content and performance of these third party sites, Company makes no guarantees about the accuracy, currency, content, or quality of the information provided by such sites, and Company assumes no responsibility for unintended, objectionable, inaccurate, misleading, or unlawful content that may reside on those sites. .</p>
+
+        <h2>12. INDEMNITY.</h2>
+        <p>You agree to indemnify Company for certain of your acts and omissions. You agree to indemnify, defend, and hold harmless Company, its partners, affiliates, officers, directors, employees, consultants, agents, and representatives from any and all third party claims, losses, liability, damages, and/or costs (including reasonable attorney fees and costs) arising from your access to or use of the Site, your violation of these Terms of Use, or your infringement, or infringement by any other user of your account, of any intellectual property or other right of any person or entity. Company will notify you promptly of any such claim, loss, liability, or demand, and will provide you with reasonable assistance, at your expense, in defending any such claim, loss, liability, damage, or cost.</p>
+        
+        <h2>13. COPYRIGHT; TRADEMARK.</h2>
+        <p>All contents of the Site are Copyright 2017-2020 wetheparents.org. All rights reserved.</p>
+        <p>No material can be downloaded, except for your own personal use provided you have retained any relevant copyright and other proprietary notices which may be contained on the images. You may not reuse, distribute, modify, repost any content of this site for public or commercial uses such as logos, text, images, without the express written permission of GRANT SPICER LTD.</p>
+        <p>“wetheparents.org” as well as all logos and similar images and text found on wetheparents.org or any other sites controlled or operated by GRANT SPICER LTD, are trademarks of GRANT SPICER LTD.</p>
+
+        <h2>14. INTENDED USE – NORTH AMERICA.</h2>
+        <p>The Site is intended for use by individuals located in North America. We make no representation or warranty that any of the materials to which you are being given access are available or appropriate for use in other jurisdictions. We do not envisage offering goods or services to parties located in the European Union nor do we intend to collect personal data from or monitor such parties.</p>
+       
+        <h2>15. GOVERNING LAW.</h2>
+        <p>These Terms shall be construed in accordance with and governed by the laws of the United Kingdom, without reference to rules regarding conflicts of law. You hereby irrevocably consent to the exclusive jurisdiction of the courts in United Kingdom, in all disputes arising out of or related to the use of the Site or these Terms of Use.</p>
+    </div>
     
 {% endblock %}
 

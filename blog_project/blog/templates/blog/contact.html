@@ -4,11 +4,40 @@
 {% block title %}Contact us{% endblock %}
 
 {% block head %}
-
+    <style>
+        .container.contact {
+            margin: 30px 60px;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
-    
+    <div class="container contact">
+        <h1>Contact us</h1>
+        <p>Parents, we’d love to hear from you. </p>
+        <p>If you have spotted a potential issue with any of our content such as inaccurate, outdated, or unclear information, then don’t hesitate to get in touch. We carefully evaluate all our reader feedback and where appropriate take immediate action to revise and improve our content.</p>
+
+        <ul>
+            <li>Email us at <a href="#">quocdat04637@gmail.com</a></li>
+            <li>Call us on <a href="#">+84336804637</a></li>
+        </ul>
+
+        <p>You can also use the above contact details to share some love or ask about the WeTheParents brand. Also, if you’re the social type, then we’d love to hear from you on our socials: </p>
+        <ul>
+            <li>Connect on <a href="https://www.facebook.com/wetheparentsSAY/">Facebook</a> / <a href="https://twitter.com/i/flow/login?redirect_after_login=%2FwetheparentsSAY%2F">Twitter</a> / <a href="https://www.pinterest.com/wetheparents/">Pinterest</a></li>
+        </ul>
+
+        <h2>Partnership opportunities</h2>
+        <p>WeTheParents does not accept payment or any other form of compensation for reviewing or promoting products. We guard our independence fiercely. </p>
+        <p>That said, we’re a friendly bunch and welcome you telling us about your brand, product, or information if you think that it could be useful for other parents.</p>
+
+        <h2>A little about us</h2>
+        <p>WeTheParents was founded by parents and is now run by parents. Our mission is to create straightforward, relatable, and useful content of the highest quality. With a spirit of warmth and inclusivity, we aim to meet you where you are and give you a supportive bump so you can navigate your parenting journey that little bit easier.</p>
+        <p>Learn more <a href="{% url 'about' %}">About us</a>.</p>
+    </div>
     
 {% endblock %}
 

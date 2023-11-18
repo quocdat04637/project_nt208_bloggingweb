@@ -2,50 +2,50 @@
 {% load static %}
 {% block title %}All posts{% endblock %}
 {% block content %}
-    <h1>All posts</h1>
-    <form method="get" action="{% url 'post_list' %}">
-        <label for="filter_author">Filter by Author:</label>
-        <select name="filter_author" id="filter_author">
-            <option value="">All Authors</option>
-            {% for author in authors %}
-                <option value="{{ author.id }}">{{ author.username }}</option>
-            {% endfor %}
-        </select>
-
-        <label for="filter_category">Filter by Category:</label>
-        <select name="filter_category" id="filter_category">
-            <option value="">All Categories</option>
-            {% for category in categories %}
-                <option value="{{ category.id }}">{{ category.name }}</option>
-            {% endfor %}
-        </select>
+    <div class="container" style="padding: 30px 10px;">
+        <h1>All posts</h1>
+        <form method="get" action="{% url 'post_list' %}">
+            <label for="filter_author">Filter by Author:</label>
+            <select name="filter_author" id="filter_author">
+                <option value="">All Authors</option>
+                {% for author in authors %}
+                    <option value="{{ author.id }}">{{ author.username }}</option>
+                {% endfor %}
+            </select>
     
-        <label for="filter_date">Filter by Date:</label>
-        <input type="date" name="filter_date" id="filter_date">
+            <label for="filter_category">Filter by Category:</label>
+            <select name="filter_category" id="filter_category">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
         
-        <button type="submit" class="btn btn-info"><i class="fa-solid fa-filter"></i></button>
-    </form>
-    <div class="newest-post">
-        {% for post in posts %}
-            <div style="padding: 10px;">
-                <img src="{{ post.image.url }}" alt="Error" width="100px" height="100px">
-                <a href="{% url 'post_detail' post.pk %}" class="text-dark text-decoration-none">
-                    <h2>{{ post.title }}</h2>
-                    <p>{{ post.author }} - {{ post.created_at }}</p>
-                </a>
-            </div>
-
-            {% if user.is_authenticated %}
-                {% if user.role == 'editor' and post.author == request.user %}
-                    <!-- Nút chỉnh sửa (tuỳ chọn) -->
-                    <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit</a>
+            <label for="filter_date">Filter by Date:</label>
+            <input type="date" name="filter_date" id="filter_date">
             
-                    <!-- Nút xoá (tuỳ chọn) -->
-                    <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-    </div>
-   
+            <button type="submit" class="btn btn-info"><i class="fa-solid fa-filter"></i></button>
+        </form>
+        <div class="newest-post">
+            {% for post in posts %}
+                <div style="padding: 10px;">
+                    <img src="{{ post.image.url }}" alt="Error" width="100px" height="100px">
+                    <a href="{% url 'post_detail' post.pk %}" class="text-dark text-decoration-none">
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.author }} - {{ post.created_at }}</p>
+                    </a>
+                </div>
     
+                {% if user.is_authenticated %}
+                    {% if user.role == 'editor' and post.author == request.user %}
+                        <!-- Nút chỉnh sửa (tuỳ chọn) -->
+                        <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit</a>
+                
+                        <!-- Nút xoá (tuỳ chọn) -->
+                        <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

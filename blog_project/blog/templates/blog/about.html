@@ -4,11 +4,103 @@
 {% block title %}About us{% endblock %}
 
 {% block head %}
+    <style>
+        .container.about {
+            padding: 30px;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
 
+        .editor-list, .user-list, .admin-list {
+            display: flex;
+            column-gap: 30px;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .editor-list .editor-img {
+            width: 30%;
+        }
+
+        .editor-list .editor-detail {
+            width: 70%;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
-    
+    <div class="container about">
+        <h1 class="text-">About us</h1>
+        <strong>Your parenting journey is going to be wild and wonderful. And wherever you are on the parenting rollercoaster – up or down – we’re here to accept, support, and guide you.</strong>
+        <p>Parenthood is wholehearted joy one moment and excruciating, bleary-eyed anguish the next. You want to be the best you can be for your child. But meeting his needs, providing opportunities, and nurturing his healthy development can feel overwhelming. From personal experience, we get it.</p>
+        <p>To that end, we bring you straightforward, actionable advice from mothers, fathers, and child healthcare experts. Let’s simplify parenting, together. That way, you make the best decisions for you and your family.</p>
+
+        <h2>What you can expect from us</h2>
+        <p>Your parenting choices are some of the most important decisions you’ll ever make. And yet finding trustworthy advice isn’t easy. Online parenting talk can be a cacophony of dogmatic opinions and unsubstantiated hearsay.</p>
+        <p>Our mission is to cut through the noise and bring you safe, reliable, and accurate information battle-tested by real parents.</p>
+
+        <h2>Meet our team</h2>
+        <p>All of our expert writers, editors, and product reviewers are parents, like you. They draw on lived experience to produce content that is relevant, relatable, and of practical value in your life.</p>
+        <p>Whenever we write about topics that may impact you or your family’s physical, mental, or psychological health, we work strictly alongside our team of medical reviewers to ensure the content is safe, reliable, and evidence-based.</p>
+
+        <div class="team-list">
+            <h3>Our editors</h3>
+            <div class="editor-list">
+                {% for editor in all_editors %}
+                    <img src="{{ editor.image.url }}" alt="No image profile" width="200px" height="200px" class="rounded-circle" class="editor-img">
+                    <div class="editor-detail">
+                        <strong><a href="{% url 'author_detail' editor.pk %}">{{ editor.username }}</a></strong>
+                        <p>{{ editor.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h3>Our users</h3>
+            <div class="user-list">
+                {% for user in all_users %}
+                    <img src="{{ user.image.url }}" alt="No image profile" width="200px" height="200px" class="rounded-circle" class="user-img">
+                    <div class="user-detail">
+                        <strong>{{ user.username }}</strong>
+                        <p>{{ user.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h3>Our administrators</h3>
+            <div class="admin-list">
+                {% for admin in all_admins %}
+                    <img src="{{ admin.image.url }}" alt="No image profile" width="200px" height="200px" class="rounded-circle" class="admin-img">
+                    <div class="admin-detail">
+                        <strong>{{ admin.username }}</strong>
+                        <p>{{ admin.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <h2>Our policies</h2>
+        <h3>Advertising on Our Site</h3>
+        <p>We receive funding from advertising and affiliate partnerships. This enables us to create, sustain, and grow our team of truly excellent writers, researchers, and experts. They in turn get to focus on what they love: creating reliable, honest, and quality content that cuts through the noise.</p>
+        <p>It’s fundamental to We The Parents’ mission that our voice remains truly autonomous and independent. That’s why we never accept sponsorship or take money from brands to promote their products. We make the distinction between ads and editorial content clear and easy to see. This includes any time we will earn a commission from a product we recommend.</p>
+
+        <h2>Our Privacy Policy</h2>
+        <p>Like you, we are concerned about the widespread collection and use of personal data. We have designed our website to request as little personal data as possible. Any that you agree to share we then protect, keeping it private and secure.</p>
+
+        <h2>Terms of Use</h2>
+        <p>The content that We The Parents’ creates is for informational purposes only. We do not give legal or healthcare advice. Do not take anything on We The Parents’ as advice about your personal situation or specific circumstances. If you need legal or healthcare advice, always seek the advice of your doctor or a suitably qualified professional licensed to practice where you live. If you think you may have a medical emergency, call your physician or 911 straight away.</p>
+        <p>We The Parents’ encourages a culture of warmth, inclusivity, and diversity. We discourage disrespectful, hurtful, or belittling behavior of any kind. This code of conduct applies to our team and we ask the same of everyone who engages and interacts on this website.</p>
+
+        <h2>Contact us</h2>
+        <p>Have a question? Spotted a site issue? Burning to share your parenting story? We are all ears.</p>
+        <ul>
+            <li>Visit our <a href="{% url 'contact' %}">Contact Page</a></li>
+            <li>Call us on <a href="">+84336804637</a></li>
+            <li>Email us at <a href="#">quocdat04637@gmail.com</a></li>
+            <li>Connect on <a href="https://www.facebook.com/wetheparentsSAY/">Facebook</a> / <a href="https://twitter.com/i/flow/login?redirect_after_login=%2FwetheparentsSAY%2F">Twitter</a> / <a href="https://www.pinterest.com/wetheparents/">Pinterest</a></li>
+        </ul>
+        
+    </div>
     
 {% endblock %}
 

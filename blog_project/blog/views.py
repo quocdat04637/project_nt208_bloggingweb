@@ -321,7 +321,10 @@ def like_comment(request, pk):
     return JsonResponse({'message': 'Liked successfully', 'likes': comment.likes})
 
 def about(request):
-    return render(request, 'blog/about.html')
+    all_editors = User.objects.filter(role='editor')
+    all_users = User.objects.filter(role='user')
+    all_admins = User.objects.filter(role='admin')
+    return render(request, 'blog/about.html', {'all_editors': all_editors, 'all_users': all_users, 'all_admins': all_admins})
 
 def contact(request):
     return render(request, 'blog/contact.html')
