@@ -6,19 +6,22 @@
 {% block header %}{% endblock %}
 
 {% block content %}
-    <h1>Create a New Tag</h1>
-    <form method="post" class="createpost-form">
-        {% csrf_token %}
-        <div>
-            <label for="{{ form.name.id_for_label }}"><strong>Name:</strong>
-            </label>
-            {{ form.name }}
-        </div>
-
-        <button type="submit" class="btn btn-primary">Create Tag</button>
-        <br>
-        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
-    </form>
+    <div class="container">
+        <h1>Create a New Tag</h1>
+        <form method="post" class="createpost-form">
+            {% csrf_token %}
+            <div>
+                <label for="{{ form.name.id_for_label }}"><strong>Name:</strong>
+                </label>
+                {{ form.name }}
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Create Tag</button>
+            <br>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+        </form>
+    </div>
+   
 
 {% endblock %}
 

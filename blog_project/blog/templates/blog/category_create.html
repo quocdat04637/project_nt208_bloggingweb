@@ -17,37 +17,40 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Create a New Category</h1>
-    <form method="post" enctype="multipart/form-data" class="createpost-form">
-        {% csrf_token %}
-        <div>
-            <label for="{{ form.name.id_for_label }}"><strong>Name:</strong>
-            </label>
-            {{ form.name }}
-        </div>
-
-        <div>
-            <label for="{{ form.description.id_for_label }}"><strong>Description:</strong>
-            </label>
-            {{ form.description }}
-        </div>
-
-        <div>
-            <label for="{{ form.image.id_for_label }}"><strong>Image:</strong>
-            </label>
-            {{ form.image }}
-        </div>
-
-        <div>
-            <label for="{{ form.tags.id_for_label }}"><strong>Tags:</strong></label>
-            {{ form.tags }}
-        </div>
-
-
-        <button type="submit" class="btn btn-primary">Create Category</button>
-        <br>
-        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
-    </form>
+    <div class="container">
+        <h1>Create a New Category</h1>
+        <form method="post" enctype="multipart/form-data" class="createpost-form">
+            {% csrf_token %}
+            <div>
+                <label for="{{ form.name.id_for_label }}"><strong>Name:</strong>
+                </label>
+                {{ form.name }}
+            </div>
+    
+            <div>
+                <label for="{{ form.description.id_for_label }}"><strong>Description:</strong>
+                </label>
+                {{ form.description }}
+            </div>
+    
+            <div>
+                <label for="{{ form.image.id_for_label }}"><strong>Image:</strong>
+                </label>
+                {{ form.image }}
+            </div>
+    
+            <div>
+                <label for="{{ form.tags.id_for_label }}"><strong>Tags:</strong></label>
+                {{ form.tags }}
+            </div>
+    
+    
+            <button type="submit" class="btn btn-primary">Create Category</button>
+            <br>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+        </form>
+    </div>
+   
 
 {% endblock %}
 

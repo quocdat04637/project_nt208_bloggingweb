@@ -30,10 +30,10 @@
 
 {% block content %}
     <div class="container faq">
-        <h1 class="text-center">FAQ's</h1>
+        <h1 class="text-center text-primary">FAQ's</h1>
             <div class="faq-list">
                 <div class="faq-item">
-                    <div class="question bg-warning toggle">
+                    <div class="question bg-primary toggle">
                         <i class="fa-solid fa-greater-than"></i>
                         <i class="fa-solid fa-person-military-to-person"></i>
                         <span>Question 1?</span>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <div class="question bg-warning toggle">
+                    <div class="question bg-primary toggle">
                         <i class="fa-solid fa-greater-than"></i>
                         <i class="fa-solid fa-person-military-to-person"></i>
                         <span>Question 2?</span>
@@ -55,7 +55,7 @@
                 </div>
     
                 <div class="faq-item">
-                    <div class="question bg-warning toggle">
+                    <div class="question bg-primary toggle">
                         <i class="fa-solid fa-greater-than"></i>
                         <i class="fa-solid fa-person-military-to-person"></i>
                         <span>Question 3?</span>
@@ -67,7 +67,7 @@
     
     
                 <div class="faq-item">
-                    <div class="question bg-warning toggle">
+                    <div class="question bg-primary toggle">
                         <i class="fa-solid fa-greater-than"></i>
                         <i class="fa-solid fa-person-military-to-person"></i>
                         <span>Question 4?</span>
@@ -79,7 +79,7 @@
     
     
                 <div class="faq-item">
-                    <div class="question bg-warning toggle">
+                    <div class="question bg-primary toggle">
                         <i class="fa-solid fa-greater-than"></i>
                         <i class="fa-solid fa-person-military-to-person"></i>
                         <span>Question 5?</span>
@@ -94,7 +94,6 @@
         
     <script>
         const questionElements = document.querySelectorAll('.toggle');
-
         questionElements.forEach((question) => {
             toggleIcon = question.querySelector(".fa-solid.fa-greater-than");
             console.log(toggleIcon);
@@ -104,7 +103,7 @@
                     toggleIcon.className = "fa-solid fa-greater-than";
                     answer.style.display = "none";
                 } else {
-                    toggleIcon.className = "fa-solid fa-angle-down"
+                    toggleIcon.className = "fa-solid fa-angle-down";
                     answer.style.display = "block";
                 }
             });
