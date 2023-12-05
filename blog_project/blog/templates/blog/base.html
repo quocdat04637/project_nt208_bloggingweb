@@ -47,7 +47,7 @@
         }
 
         .icon-link a:hover {
-           color: violet;
+           color: violet; 
         }
 
         @media screen and (max-width: 990px){
@@ -145,8 +145,8 @@
                     </a>
                 </button>
 
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                    <i class="fa fa-user text-white"></i>
+                <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                    <img style="border-radius: 20px;" src="{{ user.image.url }}" alt="" width="30px" height="30px">
                 </button>
             {% else %}
                 <!-- Hiển thị nút Đăng nhập và Đăng ký cho người dùng chưa đăng nhập -->
